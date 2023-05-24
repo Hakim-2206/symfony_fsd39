@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Products
+{% endblock %}
+
+{% block body %}
+	<hr/>
+	<a href="{{ path('app_admin_product_add') }}" class="btn btn-success">Ajouter un produit</a>
+	<a href="{{ path('app_admin_category_add') }}" class="btn btn-success">Ajouter une catégorie</a>
+
+	<br/>
+	<h2>Tableau des produits</h2>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Description</th>
+				<th scope="col">Prix</th>
+				<th scope="col">Slug</th>
+				<th scope="col">Catégorie</th>
+				<th scope="col">Edit</th>	
+			</tr>
+		</thead>
+		<tbody>
+			{% for product in products %}
+				<tr>
+					<th scope="row">{{ product.id }}</th>
+					<td>{{ product.title }}</td>
+					<td>{{ product.description }}</td>
+					<td>{{ product.price }}€</td>
+					<td>{{ product.slug }}</td>
+					<td>{{ product.category.name }}</td>
+					<td>
+						<a href="{{ path('app_admin_product_edit', {'id': product.id}) }}" class="btn btn-danger">Modifier</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<hr/>
+
+	<h2>Tableau des catégories</h2>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for categorie in categories %}
+				<tr>
+					<th scope="row">{{ categorie.id }}</th>
+					<td>{{ categorie.name }}</td>
+					<td>
+						<a href="{{ path('app_admin_category_edit', {'id': categorie.id}) }}" class="btn btn-danger">Modifier</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

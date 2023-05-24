@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un produit
+{% endblock %}
+
+{% block body %}
+	<h2>Modifier le produit :
+		{{ product.title }}</h2>
+
+	{{ form_start(form) }}
+	{{ form_row(form.title) }}
+	{{ form_row(form.description) }}
+	{{ form_end(form) }}
+{% endblock %}
